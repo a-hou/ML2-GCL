@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 from gcn import GCN  
-from linear_projection import LinearProjection
 
 
 import torch.nn as nn
