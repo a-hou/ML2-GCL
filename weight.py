@@ -42,12 +42,12 @@ def get_neighbors_and_weights(z, edge_index, device, epsilon=1e-5):
 
 def convert_to_weight_matrix(weights_dict, neighbors_dict, N, device):
     """
-    将权重和邻居信息转换为加权邻接矩阵形式
-    :param weights_dict: 每个节点的权重字典
-    :param neighbors_dict: 每个节点的邻居字典
-    :param N: 节点总数
-    :param device: 设备信息
-    :return: 权重矩阵 (N, N)
+    Convert weights and neighbor information into a weighted adjacency matrix format.
+    :param weights_dict: Dictionary of weights for each node
+    :param neighbors_dict: Dictionary of neighbors for each node
+    :param N: Total number of nodes
+    :param device: Device information (e.g., CPU or GPU)
+    :return: Weight matrix of shape (N, N)
     """
     weight_matrix = torch.zeros((N, N), device=device)  
 
