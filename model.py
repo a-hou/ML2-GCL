@@ -20,7 +20,7 @@ class CombinedModel(nn.Module):
         elif nonlinearity == 'relu':
             self.activation = nn.ReLU()
         else:
-            self.activation = nn.Identity()  # 默认无激活函数
+            self.activation = nn.Identity() 
 
     def forward(self, x, edge_index):
 
