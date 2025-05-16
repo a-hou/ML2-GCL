@@ -10,11 +10,11 @@ class GCN(nn.Module):
         super(GCN, self).__init__()
         self.conv1 = GCNConv(in_channels, hidden_channels, cached=not save_mem)
         self.conv2 = GCNConv(hidden_channels, out_channels, cached=not save_mem)
-        self.dropout = dropout  # 将 dropout 参数赋值给实例变量
+        self.dropout = dropout 
 
     def forward(self, x, adj):
         x = self.conv1(x, adj)
-        #x = self.act(x)  # 使用 PReLU 激活函数
+        #x = self.act(x) 
         x = F.dropout(x, p=self.dropout, training=self.training)
         x = self.conv2(x, adj)
         x = F.dropout(x, p=self.dropout, training=self.training)
