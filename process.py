@@ -215,33 +215,18 @@ def convert_adj_to_edge_index(adj):
     """
     Convert a dense adjacency matrix into a sparse edge index format for PyTorch Geometric.
     """
-    #adj = adj.cpu().numpy()  # 先将张量移动到 CPU，再转换为 NumPy 数组
-    edge_index = np.array(np.nonzero(adj))  # 获取非零元素的位置（边）
-    edge_index = torch.tensor(edge_index, dtype=torch.long)  # 转换为 PyTorch 张量
+    #adj = adj.cpu().numpy()  
+    edge_index = np.array(np.nonzero(adj))  
+    edge_index = torch.tensor(edge_index, dtype=torch.long)  
     return edge_index
 
 def align_weights(edge_index, weights_dict, num_nodes, device):
-    """
-    将权重字典对齐到edge_index，生成一个形状为(E,)的权重张量。
-
-    参数:
-    - edge_index: 张量，形状为(2, E)，表示边列表
-    - weights_dict: 字典，键为源节点索引，值为与之相邻的目标节点权重列表
-    - num_nodes: 整数，节点数量
-    - device: 设备，默认为 'cuda'
-
-    返回:
-    - weights: 张量，形状为(E,)
-    """
     E = edge_index.size(1)
-    weights = torch.ones(E, device=device)  # 默认权重为1.0
-
-    # 创建一个计数器，记录每个源节点已经赋予了多少个权重
+    weights = torch.ones(E, device=device)  
     counters = {node: 0 for node in weights_dict.keys()}
 
     for i in range(E):
-        src = edge_index[0, i].item()  # 源节点索引
-
+        src = edge_index[0, i].item()  
         if src in weights_dict:
             weight_list = weights_dict[src]
             count = counters[src]
@@ -250,10 +235,8 @@ def align_weights(edge_index, weights_dict, num_nodes, device):
                 weights[i] = weight_list[count]
                 counters[src] += 1
             else:
-                # 如果权重列表长度不足，默认权重为1.0
                 weights[i] = 1.0
         else:
-            # 如果源节点没有权重信息，默认权重为1.0
             weights[i] = 1.0
 
     return weights
