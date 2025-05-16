@@ -19,7 +19,6 @@ from scipy.sparse import csr_matrix
 from torch_geometric.datasets import Planetoid
 
 
-# 禁用所有 FutureWarning 警告
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -52,7 +51,6 @@ def train():
     model = CombinedModel(ft_size, args.hidden, args.hidden, dropout=args.dropout).to(device)
     #model = CombinedModel(ft_size, args.hidden).to(device)
     optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
-    # 训练循环
 
     cnt_wait = 0
     best_loss = 1e9
@@ -62,16 +60,10 @@ def train():
     for epoch in range(num_epochs):
         model.train()
         optimizer.zero_grad()
-        
-        # 获取模型输出
-        h = model(X, edge_index)  # 模型返回单一视图的表示
-        
-        # 计算损失
+        h = model(X, edge_index)  
         #loss = weighted_info_nce_loss(h, edge_index, weights, temperature=0.5)
         loss = contrastive_loss(h, neighbors, weights, device , args.tau)
-
         print('epoch:',epoch+1 , 'Loss:', loss)
-
         if loss < best_loss:
             best = loss
             best_t = epoch
@@ -88,11 +80,11 @@ def train():
         optimizer.step()
 
 
-        #     # 每20个epoch计算并输出一次准确度
+        #     
         # if (epoch + 1) % 20 == 0:
         #     model.load_state_dict(torch.load(args.best_model_path))
         #     model.eval()
-        #     embeds = model(X, edge_index)  # 前向传播，获取嵌入
+        #     embeds = model(X, edge_index)  
 
         #     embeds = embeds.detach().cpu()
 
@@ -159,7 +151,7 @@ def train():
     model.load_state_dict(torch.load(args.best_model_path))
 
     model.eval()
-    embeds = model(X, edge_index)  # 前向传播，获取嵌入
+    embeds = model(X, edge_index)  
 
     #embeds = F.normalize(embeds, p=2, dim=1)
     embeds = embeds.detach().cpu()
