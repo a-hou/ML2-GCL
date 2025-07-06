@@ -21,7 +21,7 @@ python main.py
 
 📚 Citation
 
-If you find this work useful, please cite our ICML 2024 paper:
+If you find this work useful, please cite our ICML 2025 paper:
 ```bibtex
 @inproceedings{liangml,
   title={ML$^2$-GCL: Manifold Learning Inspired Lightweight Graph Contrastive Learning},
