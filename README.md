@@ -1,3 +1,8 @@
+# ML²-GCL: Manifold Learning Inspired Lightweight Graph Contrastive Learning
+
+ML²-GCL architecture:
+
+
 ## 📂 Dataset Access
 
 You can access and download the dataset from the following Google Drive link:
@@ -12,3 +17,13 @@ Then, run the main script using the following command:
 
 ```bash
 python main.py
+
+
+If you use this work, please cite the following paper:
+
+@inproceedings{liangml,
+  title={ML$^2$-GCL: Manifold Learning Inspired Lightweight Graph Contrastive Learning},
+  author={Liang, Jianqing and Li, Zhiqiang and Wei, Xinkai and Liu, Yuan and Wang, Zhiqiang},
+  booktitle={Forty-second International Conference on Machine Learning},
+  year={2025}
+}
