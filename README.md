@@ -3,11 +3,6 @@
 ## ML²-GCL architecture:
 ![ML²-GCL Architecture](./architecture.png)
 
-## 📂 Dataset Access
-
-You can access and download the dataset from the following Google Drive link:
-
-👉 [Click here to access the dataset](https://drive.google.com/drive/folders/1N6K4mLNX_5aK5G2vINRVTwCDrMq-mZII?usp=drive_link)
 
 ## 🚀 How to Run
 
